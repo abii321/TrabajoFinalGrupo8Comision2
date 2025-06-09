@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Link, Outlet } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+    return (
+        <>
+          <header>
+            <h1>Gestion de Productos</h1>
+            <Navbar className="nav-bar">
+              <Container>
+                <Nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', color:'white'}}>
+                  <Nav.Link as={Link} to="/">Home</Nav.Link>
+                  <Nav.Link>Favoritos</Nav.Link>
+                  <Nav.Link>Agregar Producto</Nav.Link>
+                  <Nav.Link as={Link} to="/acercade">Acerca de</Nav.Link>
+                </Nav>
+              </Container>
+            </Navbar>
+            </header>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+            <main>
+                <Outlet/> {/*Aqui se insertan las rutas hijas*/}
+            </main>
+
+            <footer>
+                <p>2025 Gestion de Productos</p>
+            </footer>
+        </>
+    );
 }
-
-export default App
