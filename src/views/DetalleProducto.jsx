@@ -4,7 +4,7 @@ import { Card, Button, Container } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
 export const DetalleProducto = () => {
-  const { id } = useParams();  // obtiene el ID desde la URL
+  const { id } = useParams(); 
   const navigate = useNavigate();
   const [producto, setProducto] = useState(null);
 
