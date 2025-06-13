@@ -12,8 +12,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: '/acercade', element: <AcercaDe /> },
-      { path: '/agregar', element: <AgregarProducto /> },
-      { path: '/producto/:id', element: <DetalleProducto /> } 
+      {/**{ path: '/agregar', element: <AgregarProducto /> },
+      { path: '/producto/:id', element: <DetalleProducto /> } **/}
     ]
   }
 ]);
