@@ -12,8 +12,8 @@ export const App = () => {
               <Container>
                 <Nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', color:'white'}}>
                   <Nav.Link as={Link} to="/">Home</Nav.Link>
-                  <Nav.Link>Favoritos</Nav.Link> 
-                  <Nav.Link as={Link} to="/agregar">Agregar Producto</Nav.Link>
+                  {/**<Nav.Link>Favoritos</Nav.Link> **/}
+                  {/**<Nav.Link as={Link} to="/agregar">Agregar Producto</Nav.Link>**/}
                   <Nav.Link as={Link} to="/acercade">Acerca de</Nav.Link>
                 </Nav>
               </Container>
