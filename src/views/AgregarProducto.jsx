@@ -1,15 +1,27 @@
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import { useProductos } from "../hooks/useAgregarProducto";
+import { useAgregarProducto } from "../hooks/useAgregarProducto.jsx";
+import { useProductos } from "../context/ProductoContext.jsx";
+import { useEffect } from "react";
 
 export const AgregarProducto = () => {
-  const { formulario, errores, handleChange, handleSubmit } = useProductos();
+  const { formulario, errores, handleChange, handleSubmit, setFormulario } = useAgregarProducto();
+  const { productos } = useProductos();
 
   return (
     <Container>
-      <h2>Agregar Producto</h2>
-      <Row className="justify-content-center">
-        <Col md={6}>
-          <Form onSubmit={handleSubmit} className="formulario-agregar">
+      <h2 className="text-center my-4">Agregar Producto</h2>
+      <Form onSubmit={handleSubmit} className="formulario-agregar">
+        <Row>
+          <Col md={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>ID</Form.Label>
+              <Form.Control
+                type="text"
+                name="id"
+                value={formulario.id || ""}
+                readOnly
+              />
+            </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Nombre</Form.Label>
@@ -34,7 +46,9 @@ export const AgregarProducto = () => {
               />
               <Form.Control.Feedback type="invalid">{errores.precio}</Form.Control.Feedback>
             </Form.Group>
+          </Col>
 
+          <Col md={6}>
             <Form.Group className="mb-3">
               <Form.Label>Descripción</Form.Label>
               <Form.Control
@@ -70,11 +84,13 @@ export const AgregarProducto = () => {
               />
               <Form.Control.Feedback type="invalid">{errores.imagen}</Form.Control.Feedback>
             </Form.Group>
+          </Col>
+        </Row>
 
-            <Button variant="secondary" type="submit">Agregar Producto</Button>
-          </Form>
-        </Col>
-      </Row>
+        <div className="text-center">
+          <Button variant="secondary" type="submit">Agregar Producto</Button>
+        </div>
+      </Form>
     </Container>
   );
 };

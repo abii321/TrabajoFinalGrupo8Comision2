@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useProductos } from "../context/ProductoContext";
+import { useProductos } from "../context/ProductoContext.jsx";
 
-// Hook para manejar el formulario de agregar producto
 export const useAgregarProducto = () => {
   const navigate = useNavigate();
-  const { agregarProducto } = useProductos();
+  const { agregarProducto, ultimoId } = useProductos(); // 👈 usamos ultimoId
+  const [errores, setErrores] = useState({});
 
   const [formulario, setFormulario] = useState({
+    id: ultimoId, // 👈 inicializamos con el ID actual
     nombre: "",
     precio: "",
     descripcion: "",
@@ -15,17 +16,17 @@ export const useAgregarProducto = () => {
     imagen: ""
   });
 
-  const [errores, setErrores] = useState({});
+  useEffect(() => {
+    setFormulario((prev) => ({ ...prev, id: ultimoId })); // 👈 actualizar si cambia
+  }, [ultimoId]);
 
   const validarCampos = () => {
     const nuevosErrores = {};
-
     if (!formulario.nombre.trim()) nuevosErrores.nombre = "El nombre es obligatorio.";
     if (!formulario.precio || isNaN(formulario.precio)) nuevosErrores.precio = "El precio debe ser un número válido.";
     if (!formulario.descripcion.trim()) nuevosErrores.descripcion = "La descripción es obligatoria.";
     if (!formulario.categoria.trim()) nuevosErrores.categoria = "La categoría es obligatoria.";
     if (!formulario.imagen.trim()) nuevosErrores.imagen = "La URL de la imagen es obligatoria.";
-
     return nuevosErrores;
   };
 
@@ -43,18 +44,18 @@ export const useAgregarProducto = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const validaciones = validarCampos();
-
     if (Object.keys(validaciones).length > 0) {
       setErrores(validaciones);
       return;
     }
 
     agregarProducto(formulario);
-    navigate("/"); // Redirige al inicio o lista
+    navigate("/");
   };
 
   return {
     formulario,
+    setFormulario,
     errores,
     handleChange,
     handleSubmit
