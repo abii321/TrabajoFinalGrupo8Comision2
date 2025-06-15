@@ -25,7 +25,12 @@ export const App = () => {
             </main>
 
             <footer>
-                <p>2025 Gestion de Productos</p>
+              <p>© 2025 Grupo 8. Todos los derechos reservados.</p>
+              {/**<p>Contacto: <a href="grupo8@gmail.com">grupo8@gmail.com</a></p>
+              <div>
+                <a href="#">Política de privacidad</a> |
+                <a href="#">Términos y condiciones</a>
+              </div>**/}
             </footer>
         </>
     );

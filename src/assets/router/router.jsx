@@ -1,7 +1,7 @@
-import { App } from '../App.jsx'
-import { Home } from '../views/Home.jsx'
-import { AcercaDe } from '../views/AcercaDe.jsx';
-import { AgregarProducto } from '../views/AgregarProducto.jsx';
+import { App } from '../../App.jsx'
+import { Home } from '../pages/Home.jsx'
+import { AcercaDe } from '../pages/AcercaDe.jsx';
+import { AgregarProducto } from '../pages/AgregarProducto.jsx';
 import { ProductoProvider } from '../context/ProductoContext.jsx';
 
 import { createBrowserRouter } from 'react-router-dom';
