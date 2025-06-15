@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 export const Home = () => {
     return (
-        <Container style={{display:'flex'}}>
+        <Container style={{display:'flex', alignItems:'center'}}>
             <Principal />
             <Login />
         </Container>

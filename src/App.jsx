@@ -1,9 +1,18 @@
-import { Link, Outlet } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import {Container, Button } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import useAuth from "./assets/hooks/useAuth";
+import ProtectorRutas from "./assets/components/ProtectorRutas";
 
 export const App = () => {
+    const { user, isAuthenticated, logout } = useAuth();
+    const navigate = useNavigate();
+    const manejarLogout = () => {
+      logout();
+      navigate('/');
+    };
+
     return (
         <>
           <header>
@@ -12,9 +21,20 @@ export const App = () => {
               <Container>
                 <Nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', color:'white'}}>
                   <Nav.Link as={Link} to="/">Home</Nav.Link>
-                  {/**<Nav.Link>Favoritos</Nav.Link> **/}
-                  <Nav.Link as={Link} to="/agregar">Agregar Producto</Nav.Link>
+                  
+                  <ProtectorRutas allowedRoles={['administrativo']}>
+                    <Nav.Link as={Link} to="/agregar">Agregar Producto</Nav.Link>
+                    <Nav.Link as={Link} to="/lista">Lista de Productos</Nav.Link>
+                    {/* aca agregen las rutas de editar, eliminar y modificar el producto */}
+                  </ProtectorRutas>
+
+                  <ProtectorRutas allowedRoles={['alumno']}>
+                    <Nav.Link as={Link} to="/lista">Lista de Productos</Nav.Link>
+                    {/**<Nav.Link>Favoritos</Nav.Link> **/}
+                  </ProtectorRutas>
+
                   <Nav.Link as={Link} to="/acercade">Acerca de</Nav.Link>
+                  {isAuthenticated && (<Button variant="outline-success" onClick={manejarLogout}>Cerrar Sesión</Button> )}
                 </Nav>
               </Container>
             </Navbar>
