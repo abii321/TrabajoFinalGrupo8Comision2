@@ -1,34 +1,76 @@
-
-import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Button, Container } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { Card, Button, Container } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
+import { useProductos } from "../context/ProductoContext";
+import useAuth from "../hooks/useAuth";
 
 export const DetalleProducto = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
+  const { productos, eliminarProducto } = useProductos();
+  const { isAdmin } = useAuth();
   const navigate = useNavigate();
-  const [producto, setProducto] = useState(null);
 
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)  // busca los datos de ese producto
-      .then(res => res.json())
-      .then(data => setProducto(data));
-  }, [id]);
+  const producto = productos.find((p) => p.id === Number(id));
 
-  if (!producto) return <p className="text-center mt-4">Cargando producto...</p>;
+  if (!producto) {
+    return (
+      <Container className="mt-5">
+        <div className="alert alert-danger" role="alert">
+          Producto no encontrado.
+        </div>
+        <Button variant="secondary" onClick={() => navigate("/productos")}>
+          Volver a la lista
+        </Button>
+      </Container>
+    );
+  }
 
-  return (
-    <Container className="mt-4 d-flex justify-content-center">
-      <Card style={{ width: '24rem' }}>
-        <Card.Body>
-          <Card.Title>{producto.title}</Card.Title>
-          <Card.Text><strong>Categoría:</strong> {producto.category}</Card.Text>
-          <Card.Text><strong>Descripción:</strong> {producto.description}</Card.Text>
-          <Card.Text><strong>Precio:</strong> ${producto.price}</Card.Text>
-          <Button variant="secondary" onClick={() => navigate('/')}>
-            Volver al inicio
+  const handleEliminar = () => {
+    if (!isAdmin) return; // Seguridad adicional
+    const confirmar = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
+    if (confirmar) {
+      eliminarProducto(producto.id);
+      navigate("/productos");
+    }
+  };
+
+  const handleEditar = () => {
+    navigate(`/editar/${producto.id}`);
+  };
+
+return (
+  <Container className="d-flex justify-content-center mt-5">
+    <Card style={{ width: "26rem", backgroundColor: "#fef3f7", boxShadow: "0 0 10px rgba(0,0,0,0.1)" }}>
+      {producto.imagen && (
+        <Card.Img variant="top" src={producto.imagen} alt={producto.nombre} style={{ maxHeight: "300px", objectFit: "cover" }} />
+      )}
+      <Card.Body>
+        <Card.Title className="text-center mb-3">{producto.nombre}</Card.Title>
+        <Card.Text>
+          <p><strong>ID:</strong> {producto.id}</p>
+          <p><strong>Nombre:</strong> {producto.nombre}</p>
+          <p><strong>Precio:</strong> ${producto.precio}</p>
+          <p><strong>Descripción:</strong> {producto.descripcion}</p>
+          <p><strong>Categoría:</strong> {producto.categoria}</p>
+        </Card.Text>
+
+        <div className="d-flex justify-content-between mt-3">
+          <Button variant="secondary" onClick={() => navigate("/lista")}>
+            Volver a la lista
           </Button>
-        </Card.Body>
-      </Card>
-    </Container>
+
+          {isAdmin && (
+            <>
+              <Button variant="primary" onClick={handleEditar}>
+                Editar
+              </Button>
+              <Button variant="danger" onClick={handleEliminar}>
+                Eliminar
+              </Button>
+            </>
+          )}
+        </div>
+      </Card.Body>
+    </Card>
+  </Container>
   );
 };

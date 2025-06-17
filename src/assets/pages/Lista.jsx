@@ -27,7 +27,7 @@ const { user } = useAuth();
                 <strong>Precio:</strong> ${producto.precio} <br />
                 <strong>Categoría:</strong> {producto.categoria}
               </Card.Text>
-              <Button variant="info" onClick={() => navigate(`/detalle/${producto.id}`)}>
+              <Button variant="info" onClick={() => navigate(`/producto/${producto.id}`)}>
                 Detalles
               </Button>{' '}
               {user?.rol === "administrativo" && (
