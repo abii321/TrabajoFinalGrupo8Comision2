@@ -1,34 +1,56 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
 
-// 1. Crear el contexto
 const ProductoContext = createContext();
 
-// 2. Componente proveedor del contexto
 export const ProductoProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
-  const [ultimoId, setUltimoId] = useState(1); // ID empieza en 1
+  const [favoritos, setFavoritos] = useState([]);
+  const [ultimoId, setUltimoId] = useState(1);
 
-  // 3. Función para agregar producto
-  const agregarProducto = (producto) => {
+  const agregarProducto = useCallback((producto) => {
     const nuevoProducto = {
       ...producto,
-      id: ultimoId // usamos el ID controlado
+      id: ultimoId
     };
-
-    console.log("✅ Producto agregado:", nuevoProducto);
-    
     setProductos((prev) => [...prev, nuevoProducto]);
-    setUltimoId(ultimoId + 1); // incrementamos para el siguiente
-  };
+    setUltimoId((prevId) => prevId + 1);
+  }, [ultimoId]);
+
+  const eliminarProducto = useCallback((id) => {
+    setProductos((prev) => prev.filter(p => p.id !== id));
+    setFavoritos((prev) => prev.filter(fid => fid !== id));
+  }, []);
+
+  const editarProducto = useCallback((productoActualizado) => {
+    setProductos((prev) =>
+      prev.map(p => p.id === productoActualizado.id ? productoActualizado : p)
+    );
+  }, []);
+
+  const toggleFavorito = useCallback((id) => {
+    setFavoritos((prev) =>
+      prev.includes(id)
+        ? prev.filter(favId => favId !== id)
+        : [...prev, id]
+    );
+  }, []);
+
+  const productosFavoritos = productos.filter(p => favoritos.includes(p.id));
 
   return (
-    <ProductoContext.Provider value={{ productos, agregarProducto, ultimoId }}>
+    <ProductoContext.Provider value={{
+      productos,
+      agregarProducto,
+      eliminarProducto,
+      editarProducto,
+      toggleFavorito,
+      productosFavoritos,
+      favoritos,
+      ultimoId
+    }}>
       {children}
     </ProductoContext.Provider>
   );
 };
 
-// 5. Hook para usar el contexto
-export const useProductos = () => {
-  return useContext(ProductoContext);
-};
+export const useProductos = () => useContext(ProductoContext);
