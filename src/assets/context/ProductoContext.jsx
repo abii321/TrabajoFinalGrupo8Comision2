@@ -6,7 +6,7 @@ export const ProductoProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
   const [ultimoId, setUltimoId] = useState(1);
-
+ 
  const agregarProducto = useCallback((producto) => {
   const nuevoProducto = {
     ...producto,
@@ -16,7 +16,15 @@ export const ProductoProvider = ({ children }) => {
   setUltimoId((prevId) => prevId + 1);
 }, [ultimoId]);
 
-
+  const agregarProducto = useCallback((producto) => {
+    const nuevoProducto = {
+      ...producto,
+      id: ultimoId,
+      eliminado: false
+    };
+    setProductos((prev) => [...prev, nuevoProducto]);
+    setUltimoId((prevId) => prevId + 1);
+  }, [ultimoId]);
 
   const eliminarProducto = useCallback((id) => {
     setProductos((prev) =>
@@ -57,7 +65,9 @@ export const ProductoProvider = ({ children }) => {
       editarProducto,
       toggleFavorito,
       productosFavoritos,
-      favoritos
+      favoritos,
+      ultimoId,
+      restaurarProducto
     }}>
       {children}
     </ProductoContext.Provider>
