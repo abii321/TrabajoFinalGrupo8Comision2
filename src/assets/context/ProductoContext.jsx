@@ -10,17 +10,29 @@ export const ProductoProvider = ({ children }) => {
   const agregarProducto = useCallback((producto) => {
     const nuevoProducto = {
       ...producto,
-      id: ultimoId
+      id: ultimoId,
+      eliminado: false
     };
     setProductos((prev) => [...prev, nuevoProducto]);
     setUltimoId((prevId) => prevId + 1);
   }, [ultimoId]);
 
-  const eliminarProducto = useCallback((id) => {
-    setProductos((prev) => prev.filter(p => p.id !== id));
-    setFavoritos((prev) => prev.filter(fid => fid !== id));
-  }, []);
+const eliminarProducto = useCallback((id) => {
+  setProductos((prev) =>
+    prev.map((p) =>
+      p.id === id ? { ...p, eliminado: true } : p
+    )
+  );
+  setFavoritos((prev) => prev.filter(fid => fid !== id));
+}, []);
 
+const restaurarProducto = useCallback((id) => {
+  setProductos((prev) =>
+    prev.map((p) =>
+      p.id === id ? { ...p, eliminado: false } : p
+    )
+  );
+}, []);
   const editarProducto = useCallback((productoActualizado) => {
     setProductos((prev) =>
       prev.map(p => p.id === productoActualizado.id ? productoActualizado : p)
@@ -46,7 +58,8 @@ export const ProductoProvider = ({ children }) => {
       toggleFavorito,
       productosFavoritos,
       favoritos,
-      ultimoId
+      ultimoId,
+      restaurarProducto
     }}>
       {children}
     </ProductoContext.Provider>

@@ -8,11 +8,15 @@ export const Papelera = () => {
 
   if (productosEliminados.length === 0) {
     return <p className="text-center mt-4">La papelera está vacía 🗑</p>;
+    
   }
-
+<Button variant="primary" onClick={() => navigate("/")}>
+          Volver a Lista
+        </Button>
   return (
     <div className="container mt-4">
       <h2>Papelera de Productos</h2>
+      
       <Row>
         {productosEliminados.map((producto) => (
           <Col md={4} key={producto.id} className="mb-4">
