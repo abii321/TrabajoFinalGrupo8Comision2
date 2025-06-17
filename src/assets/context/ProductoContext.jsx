@@ -16,16 +16,6 @@ export const ProductoProvider = ({ children }) => {
   setUltimoId((prevId) => prevId + 1);
 }, [ultimoId]);
 
-  const agregarProducto = useCallback((producto) => {
-    const nuevoProducto = {
-      ...producto,
-      id: ultimoId,
-      eliminado: false
-    };
-    setProductos((prev) => [...prev, nuevoProducto]);
-    setUltimoId((prevId) => prevId + 1);
-  }, [ultimoId]);
-
   const eliminarProducto = useCallback((id) => {
     setProductos((prev) =>
       prev.map(p => p.id === id ? { ...p, eliminado: true } : p)
