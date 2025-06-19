@@ -3,8 +3,6 @@ import { useProductos } from '../context/ProductoContext';
 
 const ProductCard = ({ producto }) => {
   const { favoritos, toggleFavorito } = useProductos();
-{producto.id && <p>ID: {producto.id}</p>}
-
   const esFavorito = favoritos.includes(producto.id);
 
   return (
@@ -14,6 +12,7 @@ const ProductCard = ({ producto }) => {
         alt={producto.title}
         className="h-32 object-contain mb-2 mx-auto"
       />
+        <p className="text-sm text-gray-400">ID: {producto.id}</p>
       <h3 className="font-bold text-lg mb-1">{producto.title}</h3>
       <p className="text-gray-600 mb-1">${producto.price}</p>
       <p className="text-sm text-gray-500 mb-2">{producto.category}</p>
