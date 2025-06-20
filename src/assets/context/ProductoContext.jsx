@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useCallback } from "react";
 
 const ProductoContext = createContext();
-
 export const ProductoProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
@@ -52,6 +51,8 @@ const restaurarProducto = useCallback((id) => {
   return (
     <ProductoContext.Provider value={{
       productos,
+      setProductos, // 🆕
+      setUltimoId,  // 🆕
       agregarProducto,
       eliminarProducto,
       editarProducto,
@@ -65,5 +66,4 @@ const restaurarProducto = useCallback((id) => {
     </ProductoContext.Provider>
   );
 };
-
 export const useProductos = () => useContext(ProductoContext);

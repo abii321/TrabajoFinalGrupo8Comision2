@@ -1,5 +1,5 @@
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import { useAgregarProducto } from "../hooks/useAgregarProducto.jsx";
+import { useAgregarProducto } from "../hooks/useAgregarProducto.js";
 import { useProductos } from "../context/ProductoContext.jsx";
 import { useEffect } from "react";
 

@@ -1,6 +1,6 @@
 import { App } from '../../App.jsx';
 import { Home } from '../pages/Home.jsx';
-import { Lista } from '../pages/Lista.jsx';
+import  Lista  from '../pages/Lista.jsx';
 import { AcercaDe } from '../pages/AcercaDe.jsx';
 import { AgregarProducto } from '../pages/AgregarProducto.jsx';
 import { Papelera } from "../pages/Papelera";
