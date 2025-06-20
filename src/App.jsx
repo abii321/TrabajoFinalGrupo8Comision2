@@ -1,14 +1,18 @@
- import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Container, Button } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import useAuth from "./assets/hooks/useAuth";
 import ProtectorRutas from "./assets/components/ProtectorRutas";
+import useFetchProductos from "./assets/hooks/useFetchProductos";
 
 export const App = () => {
+
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
+   useFetchProductos();
+ 
   const manejarLogout = () => {
     logout();
     navigate('/');

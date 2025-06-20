@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useCallback } from "react";
 
 const ProductoContext = createContext();
-
 export const ProductoProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
@@ -47,6 +46,9 @@ export const ProductoProvider = ({ children }) => {
 
   return (
     <ProductoContext.Provider value={{
+      productos,
+      setProductos,
+      setUltimoId,  
       productos: productosVisibles,
       productosEliminados,
       agregarProducto,
@@ -63,5 +65,4 @@ export const ProductoProvider = ({ children }) => {
     </ProductoContext.Provider>
   );
 };
-
 export const useProductos = () => useContext(ProductoContext);
