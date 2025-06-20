@@ -12,7 +12,7 @@ export const App = () => {
   const navigate = useNavigate();
 
    useFetchProductos();
-  
+ 
   const manejarLogout = () => {
     logout();
     navigate('/');
@@ -57,4 +57,3 @@ export const App = () => {
     </>
   );
 };
-

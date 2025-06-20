@@ -7,6 +7,7 @@ import { Papelera } from "../pages/Papelera";
 import { ProductoProvider } from '../context/ProductoContext.jsx';
 import { DetalleProducto } from '../pages/DetalleProducto.jsx';
 import { EditarProducto } from '../pages/EditarProducto.jsx';
+import { Favoritos } from '../pages/Favoritos.jsx';
 
 
 import { createBrowserRouter } from 'react-router-dom';
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
         { path: '/agregar', element: <AgregarProducto /> },
         { path: '/producto/:id', element: <DetalleProducto /> },
         { path: '/editar/:id', element: <EditarProducto /> },
+        { path: '/favoritos', element: <Favoritos /> },
         { path: '/papelera', element: <Papelera /> }
     ]
     }
