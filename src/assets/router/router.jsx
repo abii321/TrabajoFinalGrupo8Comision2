@@ -7,7 +7,7 @@ import { Papelera } from "../pages/Papelera";
 import { ProductoProvider } from '../context/ProductoContext.jsx';
 import { DetalleProducto } from '../pages/DetalleProducto.jsx';
 import { EditarProducto } from '../pages/EditarProducto.jsx';
-import { Favoritos } from '../pages/Favoritos.jsx';
+import Favoritos  from '../pages/Favoritos.jsx';
 
 
 import { createBrowserRouter } from 'react-router-dom';
