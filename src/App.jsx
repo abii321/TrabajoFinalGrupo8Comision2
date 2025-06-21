@@ -24,9 +24,9 @@ export const App = () => {
               <Nav.Link as={Link} to="/">Home</Nav.Link>
 
               <ProtectorRutas allowedRoles={['administrativo']}>
-                <Nav.Link as={Link} to="/agregar">Agregar Producto</Nav.Link>
                 <Nav.Link as={Link} to="/lista">Lista de Productos</Nav.Link>
-                <Nav.Link as={Link} to="/favoritos">Favoritos</Nav.Link> {/* ✅ Ahora admins también ven favoritos */}
+                <Nav.Link as={Link} to="/agregar">Agregar Producto</Nav.Link>
+                {/**<Nav.Link as={Link} to="/favoritos">Favoritos</Nav.Link> **/}
               </ProtectorRutas>
 
               <ProtectorRutas allowedRoles={['alumno']}>
