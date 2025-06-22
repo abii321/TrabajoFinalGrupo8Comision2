@@ -7,6 +7,10 @@ export const AgregarProducto = () => {
   const { formulario, errores, handleChange, handleSubmit, setFormulario } = useAgregarProducto();
   const { productos } = useProductos();
 
+const categoriasUnicas = productos.length > 0 
+  ? [...new Set(productos.map(p => p.categoria))]
+  : [];
+
   return (
     <Container>
       <h2 className="text-center my-4">Agregar Producto</h2>
@@ -62,16 +66,22 @@ export const AgregarProducto = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Categoría</Form.Label>
-              <Form.Control
-                type="text"
-                name="categoria"
-                value={formulario.categoria}
-                onChange={handleChange}
-                isInvalid={!!errores.categoria}
-              />
-              <Form.Control.Feedback type="invalid">{errores.categoria}</Form.Control.Feedback>
-            </Form.Group>
+            <Form.Label>Categoría</Form.Label>
+            <Form.Select
+              name="categoria"
+              value={formulario.categoria}
+              onChange={handleChange}
+              isInvalid={!!errores.categoria}
+            >
+              <option value="">Seleccionar categoría</option>
+              {categoriasUnicas.map((cat, i) => (
+                <option key={i} value={cat}>{cat}</option>
+              ))}
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errores.categoria}
+            </Form.Control.Feedback>
+          </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>URL de Imagen</Form.Label>
