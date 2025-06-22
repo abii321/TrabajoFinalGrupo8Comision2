@@ -10,3 +10,12 @@ footer{
     padding: 5px;
     text-align: center;
 }
+
+.formulario-agregar {
+  background-color: #f8f0f5;
+  border: 1px solid #dbbfcb;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(170, 130, 150, 0.2);
+  margin-bottom: 40px;
+}
