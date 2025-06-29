@@ -25,16 +25,19 @@ export const App = () => {
         <Navbar className="nav-bar">
           <Container>
             <Nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', color: 'white' }}>
-              <Nav.Link as={Link} to="/">Home</Nav.Link> {/* Link reemplaza al <a> tradicional y no recarga la pagina*/}
+              {/* Link reemplaza al <a> tradicional y no recarga la pagina*/}
+              {!isAuthenticated && (
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+              )}
+
+              <Nav.Link as={Link} to="/lista">Lista de Productos</Nav.Link>
 
               <ProtectorRutas allowedRoles={['administrativo']}>
-                <Nav.Link as={Link} to="/lista">Lista de Productos</Nav.Link>
                 <Nav.Link as={Link} to="/agregar">Agregar Producto</Nav.Link>
-                {/**<Nav.Link as={Link} to="/favoritos">Favoritos</Nav.Link> **/}
+                <Nav.Link as={Link} to="/favoritos">Favoritos</Nav.Link>
               </ProtectorRutas>
 
-              <ProtectorRutas allowedRoles={['alumno']}>
-                <Nav.Link as={Link} to="/lista">Lista de Productos</Nav.Link>
+              <ProtectorRutas allowedRoles={['usuario-normal']}>
                 <Nav.Link as={Link} to="/favoritos">Favoritos</Nav.Link>
               </ProtectorRutas>
 

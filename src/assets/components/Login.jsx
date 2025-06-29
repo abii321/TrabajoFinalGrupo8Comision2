@@ -16,7 +16,7 @@ export const Login = () => {
             if( user?.rol === 'administrativo'){
                 navigate('/lista', {replace: true});
             }
-            else if(user?.rol === 'cliente'){
+            else if(user?.rol === 'usuario-normal'){
                 navigate('/lista', {replace: true});
             }
             else {
