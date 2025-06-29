@@ -1,7 +1,7 @@
 import { App } from '../../App.jsx';
 import { Home } from '../pages/Home.jsx';
 import  Lista  from '../pages/Lista.jsx';
-import { AcercaDe } from '../pages/AcercaDe.jsx';
+import { Nosotros } from '../pages/Nosotros.jsx';
 import { AgregarProducto } from '../pages/AgregarProducto.jsx';
 import { Papelera } from "../pages/Papelera";
 import { DetalleProducto } from '../pages/DetalleProducto.jsx';
@@ -18,12 +18,12 @@ export const router = createBrowserRouter([ // Enrutador, observa los cambios en
     children: [ //define rutas hijas, que se rederizan dentro de <Outlet /> del componente padre App 
         { index: true, element: <Home /> }, // equivale al path // index true , indica la ruta por defecto dentro del padre 
         { path: '/lista', element: <Lista /> },
-        { path: '/acercade', element: <AcercaDe /> },
         { path: '/agregar', element: <AgregarProducto /> },
         { path: '/producto/:id', element: <DetalleProducto /> },
         { path: '/editar/:id', element: <EditarProducto /> },
         { path: '/favoritos', element: <Favoritos /> },
-        { path: '/papelera', element: <Papelera /> }
+        { path: '/papelera', element: <Papelera /> },
+        { path: '/nosotros', element: <Nosotros /> }
     ]
     }
 ]);
