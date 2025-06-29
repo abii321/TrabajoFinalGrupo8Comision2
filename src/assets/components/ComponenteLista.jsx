@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaHeart, FaRegHeart, FaTrash, FaEdit, FaInfoCircle } from "react-icons/fa";
 import { useProductos } from "../context/ProductoContext";
 import useAuth from "../hooks/useAuth";
-import FiltroCategoria from "./FiltroCategoría.jsx";
+import FiltroCategoria from "./FiltroCategoria.jsx";
 
 const ComponenteLista = () => {
   const { productos, eliminarProducto, toggleFavorito, favoritos } = useProductos();
