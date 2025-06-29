@@ -6,7 +6,11 @@ export const AuthContext = createContext(null);
 
 // 2. Componente Proveedor del Contexto de Autenticacion
 export function AuthProvider({ children }){
-    const [ user, setUser ] = useState(null);
+    const [ user, setUser ] = useState(() => {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
     const [ isLoading, setIsLoading ] = useState(false);
 
     const login = useCallback( (credentials) => {
@@ -19,6 +23,7 @@ export function AuthProvider({ children }){
             if(usuarioEncontrado){
                 const { passwd, ...userWhitoutPasswd } = usuarioEncontrado; 
                 setUser(userWhitoutPasswd);
+                localStorage.setItem("user", JSON.stringify(userWhitoutPasswd));
                 setIsLoading(false);
                 return { success: true };
             }
@@ -37,6 +42,7 @@ export function AuthProvider({ children }){
 
     
     const logout = useCallback(()=>{
+        localStorage.removeItem("user");
         setUser(null);
     }, []);
 
