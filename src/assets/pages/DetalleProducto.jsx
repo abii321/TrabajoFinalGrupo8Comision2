@@ -1,4 +1,4 @@
-import { Card, Button, Container } from "react-bootstrap";
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProductos } from "../context/ProductoContext";
 import useAuth from "../hooks/useAuth";
@@ -38,39 +38,40 @@ export const DetalleProducto = () => {
   };
 
 return (
-  <Container className="d-flex justify-content-center mt-5">
-    <Card style={{ width: "26rem", backgroundColor: "#fef3f7", boxShadow: "0 0 10px rgba(0,0,0,0.1)" }}>
-      {producto.imagen && (
-        <Card.Img variant="top" src={producto.imagen} alt={producto.nombre} style={{ maxHeight: "300px", objectFit: "cover" }} />
-      )}
-      <Card.Body>
-        <Card.Title className="text-center mb-3">{producto.nombre}</Card.Title>
+  <Container className="mt-5">
+  <Row className="justify-content-center align-items-center">
+    <Col xs={12} md={6} order={{ xs: 1, md: 2 }} className="text-center">
+      <Card.Img
+        src={producto.imagen}
+        alt={producto.nombre}
+        style={{
+          maxWidth: "100%",
+          maxHeight: "400px",
+          objectFit: "contain",
+          padding: "1rem"
+        }}
+      />
+    </Col>
+
+    <Col xs={12} md={6} order={{ xs: 2, md: 1 }}>
+    <Card.Body>
+        <Card.Title className="text-center mb-4">{producto.nombre}</Card.Title>
         <Card.Text>
-          <p><strong>ID:</strong> {producto.id}</p>
-          <p><strong>Nombre:</strong> {producto.nombre}</p>
-          <p><strong>Precio:</strong> ${producto.precio}</p>
-          <p><strong>Descripción:</strong> {producto.descripcion}</p>
-          <p><strong>Categoría:</strong> {producto.categoria}</p>
+          <strong>ID:</strong> {producto.id} <br />
+          <strong>Nombre:</strong> {producto.nombre} <br />
+          <strong>Precio:</strong> ${producto.precio} <br />
+          <strong>Descripción:</strong> {producto.descripcion} <br />
+          <strong>Categoría:</strong> {producto.categoria} <br />
         </Card.Text>
 
-        <div className="d-flex justify-content-between mt-3">
+        <div className="d-flex justify-content-between flex-wrap">
           <Button variant="secondary" onClick={() => navigate("/lista")}>
             Volver a la lista
           </Button>
-
-          {isAdmin && (
-            <>
-              <Button variant="primary" onClick={handleEditar}>
-                Editar
-              </Button>
-              <Button variant="danger" onClick={handleEliminar}>
-                Eliminar
-              </Button>
-            </>
-          )}
         </div>
       </Card.Body>
-    </Card>
+    </Col>
+  </Row>
   </Container>
-  );
+);
 };

@@ -13,18 +13,18 @@ const ComponenteLista = () => {
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Todas");
 
-  // 🧠 1. Obtener productos activos
+  // 1. Obtener productos activos
   const productosActivos = useMemo(() => {
     return productos.filter(p => !p.eliminado);
   }, [productos]);
 
-  // 🧠 2. Extraer categorías únicas solo de productos activos
+  // 2. Extraer categorías únicas solo de productos activos
   const categorias = useMemo(() => {
     const todas = productosActivos.map(p => p.categoria);
     return [...new Set(todas)];
   }, [productosActivos]);
 
-  // 🧠 3. Aplicar filtro por categoría sobre los activos
+  // 3. Aplicar filtro por categoría sobre los activos
   const productosFiltrados = useMemo(() => {
     return categoriaSeleccionada === "Todas"
       ? productosActivos
