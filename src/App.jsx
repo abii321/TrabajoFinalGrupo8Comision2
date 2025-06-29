@@ -25,7 +25,7 @@ export const App = () => {
         <Navbar className="nav-bar">
           <Container>
             <Nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', color: 'white' }}>
-              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              <Nav.Link as={Link} to="/">Home</Nav.Link> {/* Link reemplaza al <a> tradicional y no recarga la pagina*/}
 
               <ProtectorRutas allowedRoles={['administrativo']}>
                 <Nav.Link as={Link} to="/lista">Lista de Productos</Nav.Link>

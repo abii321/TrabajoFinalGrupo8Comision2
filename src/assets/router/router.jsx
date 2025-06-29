@@ -4,7 +4,6 @@ import  Lista  from '../pages/Lista.jsx';
 import { AcercaDe } from '../pages/AcercaDe.jsx';
 import { AgregarProducto } from '../pages/AgregarProducto.jsx';
 import { Papelera } from "../pages/Papelera";
-import { ProductoProvider } from '../context/ProductoContext.jsx';
 import { DetalleProducto } from '../pages/DetalleProducto.jsx';
 import { EditarProducto } from '../pages/EditarProducto.jsx';
 import Favoritos  from '../pages/Favoritos.jsx';
@@ -12,12 +11,12 @@ import Favoritos  from '../pages/Favoritos.jsx';
 
 import { createBrowserRouter } from 'react-router-dom';
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter([ // Enrutador, observa los cambios en la URL y decide que ruta mostrar 
     {
-    path: '/',
-    element: <App />,
-    children: [
-        { index: true, element: <Home /> },
+    path: '/',  //Especifica la URL que activa esa ruta 
+    element: <App />, // componente react que se va a renderizar cuando se visite esa ruta 
+    children: [ //define rutas hijas, que se rederizan dentro de <Outlet /> del componente padre App 
+        { index: true, element: <Home /> }, // equivale al path // index true , indica la ruta por defecto dentro del padre 
         { path: '/lista', element: <Lista /> },
         { path: '/acercade', element: <AcercaDe /> },
         { path: '/agregar', element: <AgregarProducto /> },
