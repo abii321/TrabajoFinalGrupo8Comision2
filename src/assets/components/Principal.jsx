@@ -21,8 +21,8 @@ export const Principal = () => {
           src='/public/principal/imagen5.jpg'
         />
         <Carousel.Caption>
-          <h3>Funcionalidad 1</h3>
-          <p>Agregar, editar y consultar información detallada de los productos.</p>
+          <h3>Gestión completa de productos</h3>
+          <p>Añadí, editá o eliminá productos de forma sencilla.</p>
         </Carousel.Caption>
       </Carousel.Item>
       
@@ -32,8 +32,8 @@ export const Principal = () => {
           src='/public/principal/imagen7.jpg'
         />
         <Carousel.Caption>
-          <h3>Funcionalidad 2</h3>
-          <p>Gestionar fácilmente los productos desde un solo lugar.</p>
+          <h3>Favoritos personalizados</h3>
+          <p>Marcá tus productos preferidos y accedé a ellos rápido.</p>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -44,8 +44,8 @@ export const Principal = () => {
           style={{ objectFit: 'cover', height: 'auto'}}
         />
         <Carousel.Caption>
-          <h3>Funcionalidad 3</h3>
-          <p>Navegar por las secciones para acceder a las funcionalidades</p>
+          <h3>Roles definidos</h3>
+          <p>Acceso diferenciado para administradores y clientes.</p>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -56,8 +56,8 @@ export const Principal = () => {
           style={{ objectFit: 'cover', height: 'auto'}}
         />
         <Carousel.Caption>
-          <h3>Funcionalidad 4</h3>
-          <p>Navegar por las secciones para acceder a las funcionalidades</p>
+          <h3>Control total para administradores</h3>
+          <p>Los administradores gestionan todos los productos y usuarios.</p>
         </Carousel.Caption>
       </Carousel.Item>
 

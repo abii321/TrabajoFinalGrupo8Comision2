@@ -16,7 +16,7 @@ export const Login = () => {
             if( user?.rol === 'administrativo'){
                 navigate('/lista', {replace: true});
             }
-            else if(user?.rol === 'alumno'){
+            else if(user?.rol === 'cliente'){
                 navigate('/lista', {replace: true});
             }
             else {
@@ -43,7 +43,7 @@ export const Login = () => {
 
 
     return(
-        <Container style={{width:'40%'}}>
+        <Container style={{width:'40%', padding:'5%'}}>
             <h3>Inicio de Sesion</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -52,7 +52,7 @@ export const Login = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" value={passwd} onChange={(e)=> setPasswd(e.target.value)}  placeholder="Ingrese su contraseña correspondiente" />
+                    <Form.Control type="password" autoComplete="off" value={passwd} onChange={(e)=> setPasswd(e.target.value)}  placeholder="Ingrese su contraseña correspondiente" />
                 </Form.Group>
                 {loginError && <p style={{ color: "red" }}>{loginError}</p>}
                 <Button variant="primary" type="submit">Iniciar Sesión</Button>
