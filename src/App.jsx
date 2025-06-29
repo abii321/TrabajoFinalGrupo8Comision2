@@ -21,7 +21,7 @@ export const App = () => {
   return (
     <>
       <header>
-        <h1>Gestión de Productos</h1>
+        <h1>Gestion de Productos</h1>
         <Navbar className="nav-bar">
           <Container>
             <Nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', color: 'white' }}>
@@ -38,7 +38,7 @@ export const App = () => {
                 <Nav.Link as={Link} to="/favoritos">Favoritos</Nav.Link>
               </ProtectorRutas>
 
-              <Nav.Link as={Link} to="/acercade">Acerca de</Nav.Link>
+              <Nav.Link as={Link} to="/nosotros">Nosotras</Nav.Link>
               {isAuthenticated && (
                 <Button variant="outline-success" onClick={manejarLogout}>Cerrar Sesión</Button>
               )}
