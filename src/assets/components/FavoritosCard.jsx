@@ -1,17 +1,16 @@
-// components/FavoritosCards.jsx
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Button } from "react-bootstrap";
 import { useProductos } from "../context/ProductoContext";
 
-export const FavoritosCards = () => {
-  const { productosFavoritos } = useProductos();
+const FavoritosCards = ({ productos }) => {
+  const { toggleFavorito } = useProductos();
 
-  if (productosFavoritos.length === 0) {
+  if (productos.length === 0) {
     return <p className="text-center mt-4">No tenés productos favoritos 💔</p>;
   }
 
   return (
     <Row>
-      {productosFavoritos.map((producto) => (
+      {productos.map((producto) => (
         <Col md={4} key={producto.id} className="mb-4">
           <Card>
             <Card.Img variant="top" src={producto.imagen} height="200" />
@@ -21,6 +20,12 @@ export const FavoritosCards = () => {
                 <strong>Precio:</strong> ${producto.precio}<br />
                 <strong>Categoría:</strong> {producto.categoria}
               </Card.Text>
+              <Button
+                variant="outline-danger"
+                onClick={() => toggleFavorito(producto.id)}
+              >
+                💔 Quitar de favoritos
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -28,3 +33,5 @@ export const FavoritosCards = () => {
     </Row>
   );
 };
+
+export default FavoritosCards;
