@@ -1,62 +1,71 @@
+/*General*/
 h1{
     color: #6c9fb8;
     text-align: center;
     text-transform: uppercase;
     padding: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /*background-color: #d1e0e7;*/
 }
-
 h2, h3{
   color: #58849b;
   text-align: center;
 }
+.button{
+  background-color: #6c9fb8;
+  border-color: #6c9fb8;
+}
+.button:hover, .button:active{
+  background-color: #4a7183;
+  border-color: #4a7183;
+}
 
+/*Barra de navegacion*/
 .barra-nav{
   background-color: #d1e0e7;
   color:#385662;
   margin-bottom: 30px;
 }
 
+/*Pagina Home*/
 .home{
   display: flex;
   align-items: center;
 }
-
 .home-carrusel{
   width: 60%;
 }
-
 .home-login{
   width:40%;
   padding:5%;
 }
 
+/*Pagina Registro de usuarios*/
 .registro{
   width: 40%;
   padding: 5%;
 }
 
+/*Pagina Nosotras*/
 .nosotros-container{
   display: flex;
   flex-wrap: wrap;
   gap: 3px;
 }
-
 .nosotros-card{
   width: 16rem;
 }
-
 .nosotros-card-img{
   border-radius: 50%;
 }
 
+/*Pie de pagina*/
 footer{
     margin-top: 30px;
     padding: 5px;
     text-align: center;
 }
 
+/*Pagina Agregar Usuario*/
 .formulario-agregar {
   background-color: #f8f0f5;
   border: 1px solid #dbbfcb;
@@ -66,11 +75,3 @@ footer{
   margin-bottom: 40px;
 }
 
-.button{
-  background-color: #6c9fb8;
-  border-color: #6c9fb8;
-}
-.button:hover, .button:active{
-  background-color: #4a7183;
-  border-color: #4a7183;
-}
