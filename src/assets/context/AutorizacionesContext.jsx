@@ -13,30 +13,33 @@ export function AuthProvider({ children }){
 
     const [ isLoading, setIsLoading ] = useState(false);
 
-    const login = useCallback( (credentials) => {
-        setIsLoading(true); // se activa brevemente, luego se desactiva
-        try{
-            const usuarioEncontrado = userData.find(
-                u=> u.username === credentials.username && u.passwd == credentials.passwd
+    const login = useCallback((credentials) => {
+        setIsLoading(true);
+
+        try {
+            const localUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            const todosLosUsuarios = [...userData, ...localUsuarios];
+
+            const usuarioEncontrado = todosLosUsuarios.find(
+                u => u.username === credentials.username && u.passwd === credentials.passwd
             );
 
-            if(usuarioEncontrado){
-                const { passwd, ...userWhitoutPasswd } = usuarioEncontrado; 
-                setUser(userWhitoutPasswd);
-                localStorage.setItem("user", JSON.stringify(userWhitoutPasswd));
+            if (usuarioEncontrado) {
+                const { passwd, ...userSinPass } = usuarioEncontrado;
+                setUser(userSinPass);
+                localStorage.setItem("user", JSON.stringify(userSinPass));
                 setIsLoading(false);
                 return { success: true };
-            }
-            else {
+            } else {
                 setUser(null);
                 setIsLoading(false);
-                return { success: false, message: 'Credenciales invalidas. Por favor, verifica los datos ingresados' };
+                return { success: false, message: 'Credenciales inválidas.' };
             }
-        } catch(error){
-            console.error("Ingreso fallido debido a un error inesperado", error.message);
+        } catch (error) {
+            console.error("Error inesperado en login:", error.message);
             setUser(null);
             setIsLoading(false);
-            return { success: false, message: 'Ocurrio un error inesperado durante el login'}  
+            return { success: false, message: 'Error inesperado en login.' };
         }
     }, []);
 

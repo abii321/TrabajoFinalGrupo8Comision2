@@ -1,5 +1,6 @@
 import { App } from '../../App.jsx';
 import { Home } from '../pages/Home.jsx';
+import { Registro } from '../pages/Registro.jsx';
 import  Lista  from '../pages/Lista.jsx';
 import { Nosotros } from '../pages/Nosotros.jsx';
 import { AgregarProducto } from '../pages/AgregarProducto.jsx';
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([ // Enrutador, observa los cambios en
     element: <App />, // componente react que se va a renderizar cuando se visite esa ruta 
     children: [ //define rutas hijas, que se rederizan dentro de <Outlet /> del componente padre App 
         { index: true, element: <Home /> }, // equivale al path // index true , indica la ruta por defecto dentro del padre 
+        { path: '/registro', element: <Registro/>},
         { path: '/lista', element: <Lista /> },
         { path: '/agregar', element: <AgregarProducto /> },
         { path: '/producto/:id', element: <DetalleProducto /> },

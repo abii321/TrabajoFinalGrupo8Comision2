@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, NavDropdown } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import useAuth from "./assets/hooks/useAuth";
@@ -22,12 +22,15 @@ export const App = () => {
     <>
       <header>
         <h1>Gestion de Productos</h1>
-        <Navbar className="nav-bar">
+        <Navbar className="nav-bar barra-nav">
           <Container>
             <Nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', color: 'white' }}>
               {/* Link reemplaza al <a> tradicional y no recarga la pagina*/}
               {!isAuthenticated && (
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <>
+                  <Nav.Link as={Link} to="/">Home</Nav.Link>
+                  <Nav.Link as={Link} to="/registro">Registro de usuario</Nav.Link>
+                </>
               )}
 
               <Nav.Link as={Link} to="/lista">Lista de Productos</Nav.Link>
@@ -42,8 +45,12 @@ export const App = () => {
               </ProtectorRutas>
 
               <Nav.Link as={Link} to="/nosotros">Nosotras</Nav.Link>
+            
               {isAuthenticated && (
-                <Button variant="outline-success" onClick={manejarLogout}>Cerrar Sesión</Button>
+                <NavDropdown title="Usuario" id="basic-nav-dropdown">
+                  <NavDropdown.Item>{user.username}</NavDropdown.Item>
+                  <NavDropdown.Item><Button className="button" onClick={manejarLogout}>Cerrar Sesión</Button></NavDropdown.Item>
+                </NavDropdown>
               )}
             </Nav>
           </Container>

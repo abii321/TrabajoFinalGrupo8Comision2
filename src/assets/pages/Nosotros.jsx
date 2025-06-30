@@ -14,13 +14,13 @@ export const Nosotros = () => {
     return (
         <div>
             <h2>Contacto</h2>
-            <Container style={{display:'flex', flexWrap:'wrap', gap:'3px'}}>
+            <Container className="nosotros-container">
             { alumnos.map( a=> {
                 return (
-                    <Card style={{ width: '16rem' }}>
+                    <Card className="nosotros-card">
                         <a href={a.link} target="_blank" rel="noopener noreferrer">
                             {/*<Card.Img variant="top" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />*/}
-                            <Card.Img variant="top" src={`${a.link}.png`} style={{borderRadius:'50%'}}/>
+                            <Card.Img variant="top" src={`${a.link}.png`} className="nosotros-card-img"/>
                         </a>
                         <Card.Body style={{textAlign:'center'}}>
                             <Card.Title>{a.nombre}</Card.Title>

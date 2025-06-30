@@ -2,7 +2,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 export const Principal = () => {
     return (
-    <Carousel style={{ width: '60%'}} >
+    <Carousel className='home-carrusel'>
       
       <Carousel.Item>
         <img

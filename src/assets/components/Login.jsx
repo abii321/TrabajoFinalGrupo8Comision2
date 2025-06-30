@@ -43,7 +43,7 @@ export const Login = () => {
 
 
     return(
-        <Container style={{width:'40%', padding:'5%'}}>
+        <Container className="home-login">
             <h3>Inicio de Sesion</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -55,7 +55,7 @@ export const Login = () => {
                     <Form.Control type="password" autoComplete="off" value={passwd} onChange={(e)=> setPasswd(e.target.value)}  placeholder="Ingrese su contraseña correspondiente" />
                 </Form.Group>
                 {loginError && <p style={{ color: "red" }}>{loginError}</p>}
-                <Button variant="primary" type="submit">Iniciar Sesión</Button>
+                <Button className="button" type="submit">Iniciar Sesión</Button>
             </Form> 
         </Container>
     )

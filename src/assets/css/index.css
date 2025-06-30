@@ -1,8 +1,54 @@
-h1, h2{
+h1{
+    color: #6c9fb8;
     text-align: center;
     text-transform: uppercase;
     padding: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*background-color: #d1e0e7;*/
+}
+
+h2, h3{
+  color: #58849b;
+  text-align: center;
+}
+
+.barra-nav{
+  background-color: #d1e0e7;
+  color:#385662;
+  margin-bottom: 30px;
+}
+
+.home{
+  display: flex;
+  align-items: center;
+}
+
+.home-carrusel{
+  width: 60%;
+}
+
+.home-login{
+  width:40%;
+  padding:5%;
+}
+
+.registro{
+  width: 40%;
+  padding: 5%;
+}
+
+.nosotros-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.nosotros-card{
+  width: 16rem;
+}
+
+.nosotros-card-img{
+  border-radius: 50%;
 }
 
 footer{
@@ -18,4 +64,13 @@ footer{
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(170, 130, 150, 0.2);
   margin-bottom: 40px;
+}
+
+.button{
+  background-color: #6c9fb8;
+  border-color: #6c9fb8;
+}
+.button:hover, .button:active{
+  background-color: #4a7183;
+  border-color: #4a7183;
 }
