@@ -3,7 +3,7 @@ import { BiBorderRadius } from "react-icons/bi";
 
 export const Nosotros = () => {
     const alumnos = [
-        {nombre: "Cansino Lujan", git: "lujancansino", correo:"lujancansinooli09@gmail.com", escuela: "Escuela de Minas", link:"https://github.com/lujancansino"},
+        {nombre: "Cansino Celeste Lujan", git: "lujancansino", correo:"lujancansinooli09@gmail.com", escuela: "Escuela de Minas", link:"https://github.com/lujancansino"},
         {nombre: "Orellana Ariana", git: "orellanaariana", correo:"ariorellana07@gmail.com", escuela: "Escuela de Minas",  link:"https://github.com/orellanaariana"},
         {nombre: "Rodriguez Sofia Victoria", git: "soffiro", correo:"sofiarodriguez07v@gmail.com", escuela: "Escuela de Minas",  link:"https://github.com/soffiro"},
         {nombre: "Tarifa Abril Lucero", git: "altarifa", correo:"abrillucerotarifa@gmail.com", escuela: "Escuela de Minas",  link:"https://github.com/altarifa"},
