@@ -8,21 +8,16 @@ export const Login = () => {
     const [ passwd, setPasswd ] = useState('');
     const [ loginError, setLoginError ] = useState('');
 
-    const { login, isAuthenticated, user } = useAuth();
+    const { login, isAuthenticated, user } = useAuth(); // custom hook que consume el contexto de autenticacion
     const navigate= useNavigate();
 
-    useEffect( () => {
-        if(isAuthenticated){
-            if( user?.rol === 'administrativo'){
+    // Se ejecuta al comprobar que el usuario esta autenticado
+    useEffect( () => { 
+        if(isAuthenticated)
+            if( user?.rol === 'administrativo' || user?.rol === 'usuario-normal')
                 navigate('/lista', {replace: true});
-            }
-            else if(user?.rol === 'usuario-normal'){
-                navigate('/lista', {replace: true});
-            }
-            else {
-                navigate('/home', {replace: true});
-            }
-        }
+        else
+            navigate('/', {replace: true});
     }, [isAuthenticated, navigate, user]);
 
     const handleSubmit = async(e) => {
@@ -34,8 +29,8 @@ export const Login = () => {
             return;
         }
 
-        const result = await login({username, passwd});
-
+        //Intento de login
+        const result = await login({username, passwd}); 
         if(!result.success){
             setLoginError(result.message || 'Error de autenticacion')
         }
@@ -50,7 +45,7 @@ export const Login = () => {
                     <Form.Label>Usuario</Form.Label>
                     <Form.Control type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Ingrese su nombre de usuario" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                     <Form.Label>Contraseña</Form.Label>
                     <Form.Control type="password" autoComplete="off" value={passwd} onChange={(e)=> setPasswd(e.target.value)}  placeholder="Ingrese su contraseña correspondiente" />
                 </Form.Group>

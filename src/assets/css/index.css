@@ -15,8 +15,8 @@ h2, h3{
   border-color: #6c9fb8;
 }
 .button:hover, .button:active{
-  background-color: #4a7183;
-  border-color: #4a7183;
+  background-color: #4a7183 !important;
+  border-color: #4a7183 !important;
 }
 
 /*Barra de navegacion*/
@@ -24,6 +24,12 @@ h2, h3{
   background-color: #d1e0e7;
   color:#385662;
   margin-bottom: 30px;
+}
+.barra-nav-sub{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 /*Pagina Home*/
@@ -33,6 +39,9 @@ h2, h3{
 }
 .home-carrusel{
   width: 60%;
+}
+.home-carrusel h3{
+  color:white;
 }
 .home-login{
   width:40%;

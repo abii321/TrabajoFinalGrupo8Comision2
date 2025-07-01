@@ -7,9 +7,8 @@ import ProtectorRutas from "./assets/components/ProtectorRutas";
 import useFetchProductos from "./assets/hooks/useFetchProductos";
 
 export const App = () => {
-
-  const { user, isAuthenticated, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user, isAuthenticated, logout } = useAuth(); // custom hook que consume el contexto de autenticacion
+  const navigate = useNavigate(); 
 
    useFetchProductos();
  
@@ -24,7 +23,7 @@ export const App = () => {
         <h1>Gestion de Productos</h1>
         <Navbar className="nav-bar barra-nav">
           <Container>
-            <Nav style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', color: 'white' }}>
+            <Nav className="barra-nav-sub">
               {/* Link reemplaza al <a> tradicional y no recarga la pagina*/}
               {!isAuthenticated && (
                 <>
