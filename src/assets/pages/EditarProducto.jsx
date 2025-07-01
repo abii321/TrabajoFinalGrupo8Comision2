@@ -10,6 +10,10 @@ export const EditarProducto = () => {
     const { productos, editarProducto } = useProductos();
     const navigate = useNavigate();
 
+    const categoriasUnicas = productos.length > 0 
+        ? [...new Set(productos.map(p => p.categoria))]
+        : [];
+
     const producto = productos.find((p) => p.id === Number(id));
 
     const [form, setForm] = useState({
@@ -37,7 +41,18 @@ const validar = () => {
     if (!form.descripcion.trim()) nuevosErrores.descripcion = "La descripción es obligatoria.";
     if (!form.categoria.trim()) nuevosErrores.categoria = "La categoría es obligatoria.";
     if (!form.precio || isNaN(form.precio)) nuevosErrores.precio = "El precio debe ser un número.";
-    if (!form.imagen.trim()) nuevosErrores.imagen = "Debe proporcionar una URL de imagen.";
+    // Función auxiliar que valida si la URL termina en una extensión de imagen válida
+    const urlValida = (url) =>
+        /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|gif|webp)$/i.test(url.trim());
+    // Validamos si el campo de imagen está vacío
+    if (!form.imagen.trim()) {
+        nuevosErrores.imagen = "Debe proporcionar una URL de imagen.";
+    }
+    // Si no está vacío, pero no pasa la expresión regular de imagen válida
+    else if (!urlValida(form.imagen)) {
+        nuevosErrores.imagen = "La URL debe ser válida y terminar en .jpg, .jpeg, .png, .gif o .webp.";
+    }
+
 
     //se guardan los errores detectados en el estado
     setErrores(nuevosErrores);
@@ -96,15 +111,23 @@ const validar = () => {
 
             <Form.Group className="mb-3">
                 <Form.Label>Categoría</Form.Label>
-                <Form.Control
-                type="text"
-                name="categoria"
-                value={form.categoria}
-                onChange={handleChange}
-                isInvalid={!!errores.categoria}
-                />
-                <Form.Control.Feedback type="invalid">{errores.categoria}</Form.Control.Feedback>
+                <Form.Select
+                    name="categoria"
+                    value={form.categoria}
+                    onChange={handleChange}
+                    isInvalid={!!errores.categoria}
+                >
+                    <option value="">Seleccionar categoría</option>
+                    {categoriasUnicas.map((cat, i) => (
+                    <option key={i} value={cat}>{cat}</option>
+                    ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                    {errores.categoria}
+                </Form.Control.Feedback>
             </Form.Group>
+
+
             </Col>
 
             <Col md={6}>
