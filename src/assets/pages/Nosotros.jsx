@@ -1,5 +1,4 @@
 import { Card, Button, Container } from "react-bootstrap"
-import { BiBorderRadius } from "react-icons/bi";
 
 export const Nosotros = () => {
     const alumnos = [
@@ -17,20 +16,17 @@ export const Nosotros = () => {
             <Container className="nosotros-container">
             { alumnos.map( a=> {
                 return (
-                    <Card className="nosotros-card">
+                    <Card key={a.git} className="nosotros-card">
                         <a href={a.link} target="_blank" rel="noopener noreferrer">
-                            {/*<Card.Img variant="top" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />*/}
                             <Card.Img variant="top" src={`${a.link}.png`} className="nosotros-card-img"/>
                         </a>
                         <Card.Body style={{textAlign:'center'}}>
                             <Card.Title>{a.nombre}</Card.Title>
                             <Card.Text>
-                                <p>GitHub: {a.git}</p>
-                                <p>Correo: {a.correo}</p>
-                                <p>Institucion Academica: {a.escuela} </p>
-                                
+                                GitHub: {a.git} <br/>
+                                Correo: {a.correo} <br/>
+                                Institucion Academica: {a.escuela}
                             </Card.Text>
-                            {/*<Button variant="primary">Mas informacion</Button>*/}
                         </Card.Body>
                     </Card>
                 )
