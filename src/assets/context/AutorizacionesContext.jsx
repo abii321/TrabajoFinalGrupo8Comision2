@@ -46,14 +46,14 @@ export function AuthProvider({ children }){
 
     
     const logout = useCallback(()=>{
-        localStorage.removeItem("user");
+        localStorage.removeItem("user"); // se elimina el usuario actual (user) almacenado en localStorage 
         setUser(null);
     }, []);
 
 
     const authContextValue = useMemo(()=>({
         user,
-        isAuthenticated: !!user,
+        isAuthenticated: !!user, // !! permite conversiones de un valor a booleano, si user tiene algun valor es true, sino es false 
         isLoading,
         login,
         logout

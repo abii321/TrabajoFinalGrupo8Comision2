@@ -30,7 +30,7 @@ export const Login = () => {
         }
 
         //Intento de login
-        const result = await login({username, passwd}); 
+        const result = await login({username, passwd}); // await pausa la ejecución de handleSubmit hasta que login(..) termine (ya sea con éxito o error)
         if(!result.success){
             setLoginError(result.message || 'Error de autenticacion')
         }
