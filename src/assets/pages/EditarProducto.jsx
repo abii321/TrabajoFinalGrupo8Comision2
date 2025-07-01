@@ -40,7 +40,10 @@ const validar = () => {
     if (!form.nombre.trim()) nuevosErrores.nombre = "El nombre es obligatorio.";
     if (!form.descripcion.trim()) nuevosErrores.descripcion = "La descripción es obligatoria.";
     if (!form.categoria.trim()) nuevosErrores.categoria = "La categoría es obligatoria.";
-    if (!form.precio || isNaN(form.precio)) nuevosErrores.precio = "El precio debe ser un número.";
+    if (!form.precio || isNaN(form.precio) || Number(form.precio) < 0) {
+        nuevosErrores.precio = "El precio debe ser un número positivo.";
+    }
+
     // Función auxiliar que valida si la URL termina en una extensión de imagen válida
     const urlValida = (url) =>
         /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|gif|webp)$/i.test(url.trim());
