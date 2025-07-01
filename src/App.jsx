@@ -1,7 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Container, Button, NavDropdown } from 'react-bootstrap';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Container, Button, NavDropdown, Nav, Navbar } from 'react-bootstrap';
 import useAuth from "./assets/hooks/useAuth";
 import ProtectorRutas from "./assets/components/ProtectorRutas";
 import useFetchProductos from "./assets/hooks/useFetchProductos";
@@ -10,7 +8,7 @@ export const App = () => {
   const { user, isAuthenticated, logout } = useAuth(); // custom hook que consume el contexto de autenticacion
   const navigate = useNavigate(); 
 
-   useFetchProductos();
+  useFetchProductos(); // custom hook para traer productos del API
  
   const manejarLogout = () => {
     logout();
