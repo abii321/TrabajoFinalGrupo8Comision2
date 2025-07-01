@@ -1,4 +1,4 @@
-  import { useProductos } from "../context/ProductoContext";
+  import { useProductos } from "../context/ProductoContext.jsx";
   import { Button, Card, Row, Col } from "react-bootstrap";
 
   export const Papelera = () => {

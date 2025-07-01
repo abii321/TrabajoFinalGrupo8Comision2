@@ -1,25 +1,36 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, useMemo } from "react";
+import useAuth from "../hooks/useAuth";
 
 const ProductoContext = createContext();
+
 export const ProductoProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
-  const [favoritos, setFavoritos] = useState([]);
+  const [favoritosPorUsuario, setFavoritosPorUsuario] = useState({});
   const [ultimoId, setUltimoId] = useState(1);
- 
- const agregarProducto = useCallback((producto) => {
-  const nuevoProducto = {
-    ...producto,
-    id: ultimoId
-  };
-  setProductos((prev) => [...prev, nuevoProducto]);
-  setUltimoId((prevId) => prevId + 1);
-}, [ultimoId]);
+
+  const { user } = useAuth();
+  const username = user?.username;
+
+  const agregarProducto = useCallback((producto) => {
+    const nuevoProducto = {
+      ...producto,
+      id: ultimoId
+    };
+    setProductos((prev) => [...prev, nuevoProducto]);
+    setUltimoId((prevId) => prevId + 1);
+  }, [ultimoId]);
 
   const eliminarProducto = useCallback((id) => {
     setProductos((prev) =>
       prev.map(p => p.id === id ? { ...p, eliminado: true } : p)
     );
-    setFavoritos((prev) => prev.filter(fid => fid !== id));
+    setFavoritosPorUsuario((prev) => {
+      const copia = { ...prev };
+      for (const user in copia) {
+        copia[user] = copia[user].filter(favId => favId !== id);
+      }
+      return copia;
+    });
   }, []);
 
   const restaurarProducto = useCallback((id) => {
@@ -35,20 +46,28 @@ export const ProductoProvider = ({ children }) => {
   }, []);
 
   const toggleFavorito = useCallback((id) => {
-    setFavoritos((prev) =>
-      prev.includes(id) ? prev.filter(favId => favId !== id) : [...prev, id]
-    );
-  }, []);
+    if (!username) return;
+    setFavoritosPorUsuario((prev) => {
+      const favs = prev[username] || [];
+      const actualizado = favs.includes(id)
+        ? favs.filter(favId => favId !== id)
+        : [...favs, id];
+      return { ...prev, [username]: actualizado };
+    });
+  }, [username]);
 
-  const productosVisibles = productos.filter(p => !p.eliminado);
-  const productosEliminados = productos.filter(p => p.eliminado);
-  const productosFavoritos = productosVisibles.filter(p => favoritos.includes(p.id));
+  const productosVisibles = useMemo(() => productos.filter(p => !p.eliminado), [productos]);
+  const productosEliminados = useMemo(() => productos.filter(p => p.eliminado), [productos]);
+  const productosFavoritos = useMemo(() => {
+    const favoritos = favoritosPorUsuario[username] || [];
+    return productosVisibles.filter(p => favoritos.includes(p.id));
+  }, [favoritosPorUsuario, productosVisibles, username]);
 
   return (
     <ProductoContext.Provider value={{
       productos,
       setProductos,
-      setUltimoId,  
+      setUltimoId,
       productos: productosVisibles,
       productosEliminados,
       agregarProducto,
@@ -57,12 +76,12 @@ export const ProductoProvider = ({ children }) => {
       editarProducto,
       toggleFavorito,
       productosFavoritos,
-      favoritos,
-      ultimoId,
-      restaurarProducto
+      favoritos: favoritosPorUsuario[username] || [],
+      ultimoId
     }}>
       {children}
     </ProductoContext.Provider>
   );
 };
+
 export const useProductos = () => useContext(ProductoContext);

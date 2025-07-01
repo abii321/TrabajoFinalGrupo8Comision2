@@ -7,7 +7,8 @@ import { AgregarProducto } from '../pages/AgregarProducto.jsx';
 import { Papelera } from "../pages/Papelera";
 import { DetalleProducto } from '../pages/DetalleProducto.jsx';
 import { EditarProducto } from '../pages/EditarProducto.jsx';
-import Favoritos  from '../pages/Favoritos.jsx';
+import Favoritos  from '../pages/Favoritos.jsx'; 
+import ProtectorRutas from '../components/ProtectorRutas.jsx';
 
 
 import { createBrowserRouter } from 'react-router-dom';
@@ -23,9 +24,15 @@ export const router = createBrowserRouter([ // Enrutador, observa los cambios en
         { path: '/agregar', element: <AgregarProducto /> },
         { path: '/producto/:id', element: <DetalleProducto /> },
         { path: '/editar/:id', element: <EditarProducto /> },
-        { path: '/favoritos', element: <Favoritos /> },
+        { path: '/favoritos',
+  element: (
+    <ProtectorRutas>
+      <Favoritos />
+    </ProtectorRutas>
+  )
+},
         { path: '/papelera', element: <Papelera /> },
         { path: '/nosotros', element: <Nosotros /> }
     ]
-    }
+    }   
 ]);
