@@ -167,6 +167,17 @@ const validar = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errores.imagen}</Form.Control.Feedback>
             </Form.Group>
+            {form.imagen && (
+                <div className="text-center mb-3">
+                    <p>Vista previa de la imagen:</p>
+                    <img
+                        src={form.imagen}
+                        alt="Vista previa"
+                        style={{ maxWidth: "100%", maxHeight: "200px", borderRadius: "8px" }}
+                    />
+                </div>
+)}
+
             </Col>
         </Row>
 
