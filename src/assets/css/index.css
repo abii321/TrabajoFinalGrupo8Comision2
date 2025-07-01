@@ -76,12 +76,55 @@ footer{
 }
 
 /*Pagina Agregar Usuario*/
+/* Formulario Agregar Producto */
 .formulario-agregar {
-  background-color: #f8f0f5;
-  border: 1px solid #dbbfcb;
+  background-color: #fef8fa;
+  border: 2px solid #dbbfcb;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(170, 130, 150, 0.2);
+  box-shadow: 0 4px 12px rgba(190, 150, 170, 0.2);
   margin-bottom: 40px;
+  transition: all 0.3s ease-in-out;
 }
 
+.formulario-agregar input,
+.formulario-agregar textarea,
+.formulario-agregar select {
+  border-radius: 6px;
+  border: 1px solid #d3a7bc;
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.formulario-agregar input:focus,
+.formulario-agregar textarea:focus,
+.formulario-agregar select:focus {
+  border-color: #ba88a4;
+  box-shadow: 0 0 5px rgba(186, 136, 164, 0.4);
+}
+
+.formulario-agregar button {
+  background-color: #ba88a4;
+  border-color: #ba88a4;
+  color: white;
+}
+
+.formulario-agregar button:hover {
+  background-color: #9b6d88;
+  border-color: #9b6d88;
+}
+
+/* Lista de productos (tarjetas con flex-wrap) */
+.productos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.productos-grid .card {
+  flex: 1 1 300px;
+  max-width: 300px;
+  min-height: 100%;
+}
