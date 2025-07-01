@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from "react";
-import { useProductos } from "../context/ProductoContext";
-import FiltroFavoritos from "./FiltroFavoritos";
-import FavoritosCards from "./FavoritosCards";
+import React, { useState, useMemo } from "react";
+import { useProductos } from "../context/ProductoContext.jsx";
+import FiltroFavoritos from "./filtrofavorito.jsx";
+import FavoritosCards from "./FavoritosCard.jsx";
 
 const ListadoFavoritos = () => {
   const { productosFavoritos } = useProductos();
@@ -9,7 +9,7 @@ const ListadoFavoritos = () => {
 
   const categorias = useMemo(() => {
     const unicas = new Set(productosFavoritos.map((p) => p.categoria));
-    return Array.from(unicas);
+    return ["Todas", ...Array.from(unicas)];
   }, [productosFavoritos]);
 
   const productosFiltrados = useMemo(() => {

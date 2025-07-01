@@ -7,7 +7,7 @@ import { AgregarProducto } from '../pages/AgregarProducto.jsx';
 import { Papelera } from "../pages/Papelera";
 import { DetalleProducto } from '../pages/DetalleProducto.jsx';
 import { EditarProducto } from '../pages/EditarProducto.jsx';
-import Favoritos  from '../pages/Favoritos.jsx';
+import Favoritos  from '../pages/Favoritos.jsx'; 
 import { Error } from '../pages/Error.jsx'
 
 
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([ // Enrutador, observa los cambios en
         { path: 'favoritos', element: <Favoritos /> },
         { path: 'papelera', element: <Papelera /> },
         { path: 'nosotros', element: <Nosotros /> },
-        { path: '*', element: <Error/>},
+        { path: '*', element: <Error/>}
     ]
-    }
+    }   
 ]);

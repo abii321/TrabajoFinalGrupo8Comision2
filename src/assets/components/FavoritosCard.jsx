@@ -1,5 +1,5 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
-import { useProductos } from "../context/ProductoContext";
+import { useProductos } from "../context/ProductoContext.jsx";
 
 const FavoritosCards = ({ productos }) => {
   const { toggleFavorito } = useProductos();

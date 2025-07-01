@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useProductos } from '../context/ProductoContext';
+import { useProductos } from '../context/ProductoContext.jsx';
 
 const ProductCard = ({ producto }) => {
   const { favoritos, toggleFavorito } = useProductos();
