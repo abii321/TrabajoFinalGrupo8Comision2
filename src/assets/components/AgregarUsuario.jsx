@@ -15,9 +15,9 @@ export const AgregarUsuario = () => {
 
     const validarCampos = () => {
         const nuevosErrores = {};
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // [^\s@] uno o mas caracteres que no sean espacio (\s), ni arroba (@)
 
-        if (!username.trim()) nuevosErrores.username = "El nombre de usuario es obligatorio.";
+        if (!username.trim()) nuevosErrores.username = "El nombre de usuario es obligatorio."; // trim elimina los espacios en blanco al principio y al final de un string.
         if (!correo.trim()) nuevosErrores.correo = "El correo es obligatorio.";
         else if (!emailRegex.test(correo)) nuevosErrores.correo = "El formato del correo no es válido.";
         if (passwd.length < 6) nuevosErrores.passwd = "La contraseña debe tener al menos 6 caracteres.";
@@ -37,11 +37,13 @@ export const AgregarUsuario = () => {
         e.preventDefault();
         const validaciones = validarCampos();
 
+        // si hay errores
         if (Object.keys(validaciones).length > 0) {
             setErrores(validaciones);
             return;
         }
 
+        // si no hay errores
         const nuevoUsuario = {
             id: Date.now().toString(),
             username,
@@ -51,9 +53,9 @@ export const AgregarUsuario = () => {
             correo
         };
 
-        const localUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-        localUsuarios.push(nuevoUsuario);
-        localStorage.setItem("usuarios", JSON.stringify(localUsuarios));
+        const localUsuarios = JSON.parse(localStorage.getItem("usuarios")) || []; //lo transforma a un array de objetos 
+        localUsuarios.push(nuevoUsuario); // agrega el nuevo usuario
+        localStorage.setItem("usuarios", JSON.stringify(localUsuarios)); //actualiza el localStorage con el nuevo array, convertido nuevamente en string JSON.
 
         setExito(true);
         setErrores({});
@@ -69,45 +71,27 @@ export const AgregarUsuario = () => {
             <Form onSubmit={handleSubmit} noValidate>
                 <Form.Group className="mb-3">
                     <Form.Label>Nombre de Usuario</Form.Label>
-                    <Form.Control
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        isInvalid={!!errores.username}
-                    />
+                    <Form.Control value={username} onChange={(e) => setUsername(e.target.value)} isInvalid={!!errores.username} />
                     <Form.Control.Feedback type="invalid">{errores.username}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Correo</Form.Label>
-                    <Form.Control
-                        value={correo}
-                        onChange={(e) => setCorreo(e.target.value)}
-                        isInvalid={!!errores.correo}
-                    />
+                    <Form.Control value={correo} onChange={(e) => setCorreo(e.target.value)} isInvalid={!!errores.correo}/>
                     <Form.Control.Feedback type="invalid">{errores.correo}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Contraseña</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={passwd}
-                        onChange={(e) => setPasswd(e.target.value)}
-                        isInvalid={!!errores.passwd}
-                        autoComplete="new-password"
-                    />
+                    <Form.Control type="password" value={passwd} onChange={(e) => setPasswd(e.target.value)} isInvalid={!!errores.passwd}
+                        autoComplete="new-password"/>
                     <Form.Control.Feedback type="invalid">{errores.passwd}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Confirmación de Contraseña</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={cpasswd}
-                        onChange={(e) => setCpasswd(e.target.value)}
-                        isInvalid={!!errores.cpasswd}
-                        autoComplete="new-password"
-                    />
+                    <Form.Control type="password" value={cpasswd} onChange={(e) => setCpasswd(e.target.value)} isInvalid={!!errores.cpasswd}
+                        autoComplete="new-password"/>
                     <Form.Control.Feedback type="invalid">{errores.cpasswd}</Form.Control.Feedback>
                 </Form.Group>
 

@@ -1,10 +1,9 @@
-import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { Spinner, Container } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 
 const ProtectorRutas = ( { allowedRoles, children } ) => {
-    const { isAuthenticated, user, isLoading } = useAuth();
-
+    const { isAuthenticated, user, isLoading } = useAuth(); // custom hook que consume el contexto de autenticacion
     // 1. Mostrar un spinner mientras se carga el estado de autenticacion
     if (isLoading){
         return (
