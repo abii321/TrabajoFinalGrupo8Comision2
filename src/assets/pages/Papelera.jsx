@@ -2,10 +2,7 @@
   import { Button, Card, Row, Col } from "react-bootstrap";
 
   export const Papelera = () => {
-    const { productos, restaurarProducto } = useProductos();
-
-    const productosEliminados = productos.filter(p => p.eliminado);
-
+    const { productosEliminados, restaurarProducto } = useProductos(); 
     if (productosEliminados.length === 0) {
       return <p className="text-center mt-4">La papelera está vacía 🗑</p>;
     }
