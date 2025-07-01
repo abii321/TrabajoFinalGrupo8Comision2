@@ -85,3 +85,16 @@ footer{
   margin-bottom: 40px;
 }
 
+/* Lista de productos (tarjetas con flex-wrap) */
+.productos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.productos-grid .card {
+  flex: 1 1 300px;
+  max-width: 300px;
+  min-height: 100%;
+}

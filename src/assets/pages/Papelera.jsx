@@ -1,14 +1,16 @@
   import { useProductos } from "../context/ProductoContext.jsx";
   import { Button, Card, Row, Col } from "react-bootstrap";
-
+  import { useNavigate } from "react-router-dom";
   export const Papelera = () => {
     const { productosEliminados, restaurarProducto } = useProductos(); 
+    const navigate = useNavigate(); 
     if (productosEliminados.length === 0) {
       return <p className="text-center mt-4">La papelera está vacía 🗑</p>;
     }
 
     return (
       <div className="container mt-4">
+        <Button variant="secondary" className="mb-3" onClick={() => navigate("/lista")}> ← Volver a la lista de productos</Button>
         <h2>Papelera de Productos</h2>
         <Row>
           {productosEliminados.map((producto) => (
