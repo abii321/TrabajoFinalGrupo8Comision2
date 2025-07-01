@@ -49,29 +49,34 @@ const ComponenteLista = () => {
             <Card>
               <Card.Img variant="top" src={producto.imagen} height="200" />
               <Card.Body>
-                          {user && (
-              <Button variant="info" onClick={() => navigate(`/producto/${producto.id}`)}>
-                <FaInfoCircle /> Detalles
-              </Button>
-            )}{' '}
-            {user && (
-            <Button variant={favoritos.includes(producto.id) ? "success" : "outline-success"}
-                  onClick={() => toggleFavorito(producto.id)}
-                >
-                  {favoritos.includes(producto.id) ? <FaHeart /> : <FaRegHeart />} Favorito
-                </Button>
-                )}{' '}
-            {user?.rol === "administrativo" && (
-              <>
-                <Button variant="warning" onClick={() => navigate(`/editar/${producto.id}`)}>
-                  <FaEdit /> Editar
-                </Button>{' '}
-                <Button variant="danger" onClick={() => eliminarProducto(producto.id)}>
-                  <FaTrash /> Eliminar
-                </Button>{' '}
-              </>
-            )}
-
+                <Card.Title>{producto.nombre}</Card.Title>
+                <Card.Text>
+                  <strong>Precio:</strong> ${producto.precio} <br />
+                  <strong>Categoría:</strong> {producto.categoria}
+                </Card.Text>
+                {user?.rol === "administrativo" && (
+                  <>
+                    <Button variant="warning" onClick={() => navigate(`/editar/${producto.id}`)}>
+                      <FaEdit /> Editar
+                    </Button>{' '}
+                    <Button variant="danger" onClick={() => eliminarProducto(producto.id)}>
+                      <FaTrash /> Eliminar
+                    </Button>{' '}
+                  </>
+                )}
+                { (user?.rol === "administrativo" || user?.rol === "usuario-normal") && (
+                  <>
+                  <Button variant="info" onClick={() => navigate(`/producto/${producto.id}`)}>
+                    <FaInfoCircle /> Detalles
+                  </Button>{' '}
+                  <Button
+                    variant={favoritos.includes(producto.id) ? "success" : "outline-success"}
+                    onClick={() => toggleFavorito(producto.id)}
+                  >
+                    {favoritos.includes(producto.id) ? <FaHeart /> : <FaRegHeart />} Favorito
+                  </Button> 
+                  </>
+                )}
               </Card.Body>
             </Card>
           </Col>
