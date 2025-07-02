@@ -1,15 +1,17 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { useProductos } from "../context/ProductoContext.jsx";
+import useAuth from "../hooks/useAuth"; 
 
 const FavoritosCards = ({ productos }) => {
   const { toggleFavorito } = useProductos();
+  const { user } = useAuth(); // ⚠️ Obtener usuario logueado
 
   if (productos.length === 0) {
     return <p className="text-center mt-4">No tenés productos favoritos 💔</p>;
   }
 
   return (
-    <Row className="lista">
+    <div className="lista">
       {productos.map((producto) => (
         <Col md={4} key={producto.id} className="lista-producto">
           <Card>
@@ -20,17 +22,19 @@ const FavoritosCards = ({ productos }) => {
                 <strong>Precio:</strong> ${producto.precio}<br />
                 <strong>Categoría:</strong> {producto.categoria}
               </Card.Text>
-              <Button
+              {user && (
+               <Button
                 variant="outline-danger"
-                onClick={() => toggleFavorito(producto.id)}
-              >
-                💔 Quitar de favoritos
-              </Button>
+                 onClick={() => toggleFavorito(producto.id)}
+                 > 
+                 💔 Quitar de favoritos
+                  </Button>
+)}
             </Card.Body>
           </Card>
         </Col>
       ))}
-    </Row>
+    </div>
   );
 };
 
