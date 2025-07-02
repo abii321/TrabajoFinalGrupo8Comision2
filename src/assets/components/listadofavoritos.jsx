@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useProductos } from "../context/ProductoContext.jsx";
-import FiltroFavoritos from "./filtrofavorito.jsx";
+import FiltroCategoria from "./FiltroCategoria.jsx";
 import FavoritosCards from "./FavoritosCard.jsx";
 
 const ListadoFavoritos = () => {
@@ -21,7 +21,7 @@ const ListadoFavoritos = () => {
 
   return (
     <div>
-      <FiltroFavoritos
+      <FiltroCategoria
         categorias={categorias}
         categoriaSeleccionada={categoriaSeleccionada}
         onChange={(e) => setCategoriaSeleccionada(e.target.value)}
