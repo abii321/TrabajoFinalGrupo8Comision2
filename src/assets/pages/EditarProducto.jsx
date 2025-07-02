@@ -5,12 +5,13 @@ import { Container, Alert, Button } from "react-bootstrap";
 import { EditarProductoCard } from "../components/EditarProductoCard";
 
 export const EditarProducto = () => {
-    const { id } = useParams();
-    const { productos, editarProducto } = useProductos();
+    const { id } = useParams(); // Obtener el ID del producto desde la URL
+    const { productos, editarProducto } = useProductos(); // Acceder al contexto de productos
     const navigate = useNavigate();
 
     const producto = productos.find((p) => p.id === Number(id));
 
+    // Si no se encuentra el producto, mostrar mensaje de error
     if (!producto) {
         return (
             <Container className="mt-5">
@@ -20,6 +21,7 @@ export const EditarProducto = () => {
     );
     }
 
+    // Renderizar el componente EditarProductoCard, pasando props necesarias
     return (
         <EditarProductoCard producto={producto} editarProducto={editarProducto} navigate={navigate} productos={productos} />
     );
