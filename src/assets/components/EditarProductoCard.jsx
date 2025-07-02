@@ -11,18 +11,22 @@ export const EditarProductoCard = ({ producto, editarProducto, navigate, product
         imagen: ""
     });
 
+    // Estado para mensajes de error por campo
     const [errores, setErrores] = useState({});
 
+    // Llenar el formulario con los datos del producto al cargar
     useEffect(() => {
         if (producto) {
         setForm({ ...producto });
     }
     }, [producto]);
 
+    // Extraer categorías únicas
     const categoriasUnicas = productos.length > 0 
         ? [...new Set(productos.map(p => p.categoria))]
         : [];
 
+    // Función de validación de campos
     const validar = () => {
         const nuevosErrores = {};
 
@@ -62,6 +66,7 @@ export const EditarProductoCard = ({ producto, editarProducto, navigate, product
         setForm({ ...form, [name]: value });
     };
 
+    // Renderizado del formulario
     return (
     <Container className="mt-5">
         <h2 className="text-center mb-4">Editar Producto</h2>
