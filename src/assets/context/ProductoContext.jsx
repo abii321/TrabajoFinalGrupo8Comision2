@@ -47,11 +47,11 @@ export const ProductoProvider = ({ children }) => {
 
   const toggleFavorito = useCallback((id) => {
     if (!username) return;
-    setFavoritosPorUsuario((prev) => {
-      const favs = prev[username] || [];
-      const actualizado = favs.includes(id)
-        ? favs.filter(favId => favId !== id)
-        : [...favs, id];
+    setFavoritosPorUsuario((prev) => { //Actualiza el objeto que guarda los favoritos por usuario
+      const favs = prev[username] || []; //obtiene los favoritos actuales del user
+      const actualizado = favs.includes(id) // decide si agregar o quitar
+        ? favs.filter(favId => favId !== id) // si ya estaba, lo quita
+        : [...favs, id];                    // si no estaba, lo agrega
       return { ...prev, [username]: actualizado };
     });
   }, [username]);
