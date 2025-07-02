@@ -116,15 +116,36 @@ footer{
 }
 
 /* Lista de productos (tarjetas con flex-wrap) */
-.productos-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 20px;
+.pag-lista{
+  padding: 1rem;
 }
 
-.productos-grid .card {
-  flex: 1 1 300px;
+.lista{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top:1rem;
+}
+.lista-producto{
+  flex:1 1 250px;
   max-width: 300px;
-  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.lista-img{
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+.lista-producto .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.lista-producto .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
 }

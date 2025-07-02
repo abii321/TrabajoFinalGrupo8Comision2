@@ -9,11 +9,11 @@ const FavoritosCards = ({ productos }) => {
   }
 
   return (
-    <Row>
+    <Row className="lista">
       {productos.map((producto) => (
-        <Col md={4} key={producto.id} className="mb-4">
+        <Col md={4} key={producto.id} className="lista-producto">
           <Card>
-            <Card.Img variant="top" src={producto.imagen} height="200" />
+            <Card.Img variant="top" src={producto.imagen} className="lista-img" />
             <Card.Body>
               <Card.Title>{producto.nombre}</Card.Title>
               <Card.Text>
