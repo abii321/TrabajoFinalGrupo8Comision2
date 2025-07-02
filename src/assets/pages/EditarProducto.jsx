@@ -23,6 +23,6 @@ export const EditarProducto = () => {
 
     // Renderizar el componente EditarProductoCard, pasando props necesarias
     return (
-        <EditarProductoCard producto={producto} editarProducto={editarProducto} navigate={navigate} productos={productos} />
+        <EditarProductoCard producto={producto} editarProducto={editarProducto} productos={productos} />
     );
 };

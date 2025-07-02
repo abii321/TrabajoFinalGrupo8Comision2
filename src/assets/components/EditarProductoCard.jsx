@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 
-export const EditarProductoCard = ({ producto, editarProducto, navigate, productos }) => {
+export const EditarProductoCard = ({ producto, editarProducto, productos }) => {
     const [form, setForm] = useState({
         id: "",
         nombre: "",
@@ -13,6 +14,7 @@ export const EditarProductoCard = ({ producto, editarProducto, navigate, product
 
     // Estado para mensajes de error por campo
     const [errores, setErrores] = useState({});
+    const navigate = useNavigate();
 
     // Llenar el formulario con los datos del producto al cargar
     useEffect(() => {
