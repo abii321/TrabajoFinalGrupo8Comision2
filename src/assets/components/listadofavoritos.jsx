@@ -3,16 +3,16 @@ import { useProductos } from "../context/ProductoContext.jsx";
 import FiltroCategoria from "./FiltroCategoria.jsx";
 import FavoritosCards from "./FavoritosCard.jsx";
 
-const ListadoFavoritos = () => {
+const ListadoFavoritos = () => {  // Componente para listar los productos favoritos con filtro por categoría 
   const { productosFavoritos } = useProductos();
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Todas");
 
-  const categorias = useMemo(() => {
+  const categorias = useMemo(() => { // Extraemos las categorías únicas de los productos favoritos
     const unicas = new Set(productosFavoritos.map((p) => p.categoria));
     return ["Todas", ...Array.from(unicas)];
   }, [productosFavoritos]);
 
-  const productosFiltrados = useMemo(() => {
+  const productosFiltrados = useMemo(() => { // Filtramos los productos favoritos según la categoría seleccionada
     if (categoriaSeleccionada === "Todas") return productosFavoritos;
     return productosFavoritos.filter(
       (p) => p.categoria === categoriaSeleccionada
@@ -21,12 +21,12 @@ const ListadoFavoritos = () => {
 
   return (
     <div>
-      <FiltroCategoria
+      <FiltroCategoria // Componente para filtrar por categoría
         categorias={categorias}
         categoriaSeleccionada={categoriaSeleccionada}
         onChange={(e) => setCategoriaSeleccionada(e.target.value)}
       />
-      <FavoritosCards productos={productosFiltrados} />
+      <FavoritosCards productos={productosFiltrados} /> {/* Componente para mostrar los productos favoritos filtrados */}
     </div>
   );
 };
