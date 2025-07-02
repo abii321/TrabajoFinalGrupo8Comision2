@@ -1,6 +1,5 @@
 import React from "react";
-import ListadoFavoritos from "../components/listadofavoritos.jsx";
-
+import ListadoFavoritos from "../components/listadofavoritos.jsx"; //se encargará de mostrar los productos favoritos
 
 const Favoritos = () => {
   return (
