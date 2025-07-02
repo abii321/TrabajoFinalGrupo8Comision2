@@ -1,4 +1,4 @@
-import { Card, Button, Container } from "react-bootstrap"
+import { Card, Container } from "react-bootstrap"
 
 export const Nosotros = () => {
     const alumnos = [

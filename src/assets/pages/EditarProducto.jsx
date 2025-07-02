@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useProductos } from "../context/ProductoContext";
-import { useEffect, useState } from "react";
 import { Container, Alert, Button } from "react-bootstrap";
 import { EditarProductoCard } from "../components/EditarProductoCard";
 
