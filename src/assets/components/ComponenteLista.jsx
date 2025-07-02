@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaRegHeart, FaTrash, FaEdit, FaInfoCircle } from "react-icons/fa";
@@ -43,11 +43,11 @@ const ComponenteLista = () => {
         onChange={manejarCambioCategoria}
       />
 
-      <Row>
+      <Row className="lista">
         {productosFiltrados.map((producto) => (
-          <Col md={4} key={producto.id} className="mb-4">
+          <Col key={producto.id} className="lista-producto">
             <Card>
-              <Card.Img variant="top" src={producto.imagen} height="200" />
+              <Card.Img variant="top" src={producto.imagen} className="lista-img"/>
               <Card.Body>
                 <Card.Title>{producto.nombre}</Card.Title>
                 <Card.Text>
