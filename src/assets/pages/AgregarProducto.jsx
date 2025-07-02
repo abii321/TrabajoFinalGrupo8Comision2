@@ -1,7 +1,6 @@
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useAgregarProducto } from "../hooks/useAgregarProducto.js";
 import { useProductos } from "../context/ProductoContext.jsx";
-import { useEffect } from "react";
 
 export const AgregarProducto = () => {
   const { formulario, errores, handleChange, handleSubmit, setFormulario } = useAgregarProducto();
