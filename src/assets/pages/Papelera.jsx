@@ -9,14 +9,14 @@
     }
 
     return (
-      <div className="container mt-4">
+      <div className="pag-lista">
         <Button variant="secondary" className="mb-3" onClick={() => navigate("/lista")}> ← Volver a la lista de productos</Button>
         <h2>Papelera de Productos</h2>
-        <Row>
+        <Row className="lista">
           {productosEliminados.map((producto) => (
-            <Col md={4} key={producto.id} className="mb-4">
+            <Col md={4} key={producto.id} className="lista-producto">
               <Card>
-                <Card.Img variant="top" src={producto.imagen} height="200" />
+                <Card.Img variant="top" src={producto.imagen} className="lista-img" />
                 <Card.Body>
                   <Card.Title>{producto.nombre}</Card.Title>
                   <Card.Text>
