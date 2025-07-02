@@ -1,10 +1,12 @@
 /*General*/
 h1{
     color: #6c9fb8;
-    text-align: center;
+    text-align: center; /* ¡IMPORTANTE! Vuelve a activar el centrado de texto para el h1 */
     text-transform: uppercase;
-    padding: 20px;
+    padding: 20px; /* Este padding está bien, afectará el espacio alrededor del h1 */
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-grow: 1; /* Permite que el h1 crezca y ocupe todo el espacio disponible */
+    margin: 0;   /* Asegura que no haya márgenes externos en el h1 que lo limiten */
 }
 h2, h3{
   color: #58849b;
@@ -78,41 +80,102 @@ footer{
 /*Pagina Agregar Usuario*/
 /* Formulario Agregar Producto */
 .formulario-agregar {
-  background-color: #fef8fa;
-  border: 2px solid #dbbfcb;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(190, 150, 170, 0.2);
+  background-color: #e0f2f7; 
+  border: 2px solid #6c9fb8; 
+  box-shadow: 0 4px 12px rgba(108, 159, 184, 0.2); 
   margin-bottom: 40px;
+  border-radius: 12px;
   transition: all 0.3s ease-in-out;
+  padding: 30px;
 }
 
 .formulario-agregar input,
 .formulario-agregar textarea,
 .formulario-agregar select {
   border-radius: 6px;
-  border: 1px solid #d3a7bc;
+  border: 1px solid #9bbcd0; 
   padding: 10px;
   margin-bottom: 15px;
   width: 100%;
+  background-color: #ffffff; 
+  color: #333; 
 }
 
 .formulario-agregar input:focus,
 .formulario-agregar textarea:focus,
 .formulario-agregar select:focus {
-  border-color: #ba88a4;
-  box-shadow: 0 0 5px rgba(186, 136, 164, 0.4);
+  border-color: #4a7183; 
+  box-shadow: 0 0 5px rgba(74, 113, 131, 0.4); 
 }
 
 .formulario-agregar button {
-  background-color: #ba88a4;
-  border-color: #ba88a4;
+  background-color: #6c9fb8; 
+  border-color: #6c9fb8;
   color: white;
 }
 
 .formulario-agregar button:hover {
-  background-color: #9b6d88;
-  border-color: #9b6d88;
+  background-color: #4a7183;
+  border-color: #4a7183;
+}
+
+/* ESTILOS PARA MODO OSCURO - FORMULARIO AGREGAR PRODUCTO */
+
+body.tema-oscuro .formulario-agregar {
+    background-color: #1f2a3a;
+    border: 2px solid #3c5d73;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+body.tema-oscuro .formulario-agregar input,
+body.tema-oscuro .formulario-agregar textarea,
+body.tema-oscuro .formulario-agregar select {
+    background-color: #2b3a4a;
+    color: #e0e6eb;
+    border: 1px solid #5a7d94;
+}
+
+body.tema-oscuro .formulario-agregar input::placeholder,
+body.tema-oscuro .formulario-agregar textarea::placeholder {
+    color: #90a0b0;
+}
+
+body.tema-oscuro .formulario-agregar input:focus,
+body.tema-oscuro .formulario-agregar textarea:focus,
+body.tema-oscuro .formulario-agregar select:focus {
+    border-color: #6c9fb8;
+    box-shadow: 0 0 5px rgba(108, 159, 184, 0.7);
+}
+
+body.tema-oscuro .formulario-agregar button {
+    background-color: #6c9fb8;
+    border-color: #6c9fb8;
+    color: #fff;
+}
+
+body.tema-oscuro .formulario-agregar button:hover {
+    background-color: #4a7183;
+    border-color: #4a7183;
+}
+
+body.tema-oscuro {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+.tema-oscuro .nav-bar {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+/* Enlaces visibles en modo oscuro */
+body.tema-oscuro a,
+body.tema-oscuro .nav-link {
+    color: #f0f0f0 !important;
+}
+
+body.tema-oscuro .nav-link:hover {
+    color: #cccccc !important;
 }
 
 /* Lista de productos (tarjetas con flex-wrap) */
@@ -160,4 +223,30 @@ footer{
 .card-container .card {
   flex: 1 1 300px; /* ocupa mínimo 300px pero puede crecer */
   max-width: 350px;
+}
+
+/*Estado claro y oscuro*/
+body.tema-claro {
+  background-color: #fff;
+  color: #000;
+}
+
+body.tema-oscuro {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+.tema-oscuro .nav-bar {
+  background-color: #1f1f1f;
+  color: white;
+}
+
+/* Enlaces visibles en modo oscuro */
+body.tema-oscuro a,
+body.tema-oscuro .nav-link {
+  color: #f0f0f0 !important;
+}
+
+body.tema-oscuro .nav-link:hover {
+  color: #cccccc !important;
 }
