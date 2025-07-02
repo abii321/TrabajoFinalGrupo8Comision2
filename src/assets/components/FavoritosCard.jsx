@@ -2,9 +2,9 @@ import { Card, Row, Col, Button } from "react-bootstrap";
 import { useProductos } from "../context/ProductoContext.jsx";
 import useAuth from "../hooks/useAuth"; 
 
-const FavoritosCards = ({ productos }) => {
+const FavoritosCards = ({ productos }) => { // Componente para mostrar los productos favoritos ya filtrados
   const { toggleFavorito } = useProductos();
-  const { user } = useAuth(); // ⚠️ Obtener usuario logueado
+  const { user } = useAuth(); //  Obtener usuario logueado
 
   if (productos.length === 0) {
     return <p className="text-center mt-4">No tenés productos favoritos 💔</p>;
